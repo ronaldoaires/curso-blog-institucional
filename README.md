@@ -1,58 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blog Institucional — Laravel 13 + Filament + AI
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> A hands-on, educational project built for the online course **"Laravel 13, Filament and AI: Build Professional Systems"**. It shows how to go from an empty folder to a production-ready web application with a dynamic blog and a full admin panel, using modern Laravel and AI-assisted development.
 
-## About Laravel
+**Course on Udemy:** _add your course link here_
+**Author:** Ronaldo Aires — [GitHub](https://github.com/ronaldoaires) · [LinkedIn](https://www.linkedin.com/in/ronaldoaires/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Why this project exists
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This repository is the companion code for a video course I created and recorded. It is **not** a commercial product: every commit, file and design decision exists to teach a specific concept in the simplest and most practical way possible.
 
-## Learning Laravel
+At the same time, it is a public demonstration of how I build real-world applications:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Modern Laravel (v13)** with current conventions: routing, controllers, Blade layouts, Eloquent models, migrations, factories and seeders.
+- **Filament** for building admin panels quickly, with proper access control.
+- **AI-assisted development** used as a professional tool: generating migrations, models, resources and layouts, then **reviewing, testing and correcting** the output instead of trusting it blindly.
+- **Real deployment** on shared hosting, which is the environment many real-world clients actually use.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+I build modern, production-grade web systems, from management platforms to institutional sites with custom admin panels, and I teach what I use in production. This project is where those two things meet.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## What you will find here
 
-## Agentic Development
+A simple institutional website with a blog that evolves step by step, following the course modules:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Module | Focus | What it covers |
+|---|---|---|
+| **1. Foundations** | Static site | Environment setup, first Laravel app, routes, controllers, 404 page, Blade layout, header/footer, config/ENV, dynamic SEO, favicon, deployment to real shared hosting |
+| **2. Dynamic blog** | Database | Database connection, migrations, Eloquent models and relationships, factories and seeders, controllers feeding views, pagination and search, categories and posts |
+| **3. Admin panel** | Filament | Filament installation, access control via `canAccessPanel`, Filament Resources, simple (modal) resources, working with AI-generated code |
+
+The same project grows across the modules, so each lesson builds on the previous one.
+
+## Tech stack
+
+- **Backend:** PHP, Laravel 13
+- **Admin panel:** Filament
+- **Frontend:** Blade, Tailwind CSS
+- **Database:** MySQL (InnoDB)
+- **Tooling:** Composer, Node.js, Vite, Git
+- **Hosting target:** shared hosting (no terminal access required for deployment)
+
+## Key concepts demonstrated
+
+- Clean MVC structure with resource-style controllers and named routes
+- Reusable Blade layouts and components
+- Database design with migrations and foreign-key relationships
+- Eloquent relationships (posts, categories, users, user addresses)
+- Realistic test data using factories and seeders
+- Pagination, search and query filtering
+- Role-based access to an admin panel (`is_admin` / `role` column)
+- Filament Resources (full-page and simple modal variants)
+- Environment-based configuration and dynamic SEO (title/description per page)
+- A critical workflow for AI-generated code: generate, read, test, fix, consult the docs
+
+## Getting started
+
+### Requirements
+
+- A PHP version supported by Laravel 13 (check the [official docs](https://laravel.com/docs))
+- Composer
+- Node.js and npm
+- MySQL
+
+### Installation
 
 ```bash
-composer require laravel/boost --dev
+# Clone the repository
+git clone https://github.com/ronaldoaires/blog-institucional.git
+cd blog-institucional
 
-php artisan boost:install
+# Install dependencies
+composer install
+npm install
+
+# Environment setup
+cp .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Create an empty MySQL database and set your credentials in `.env`:
 
-## Contributing
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_user
+DB_PASSWORD=your_password
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Then run the migrations and seeders, and start the app:
 
-## Code of Conduct
+```bash
+php artisan migrate --seed
+npm run dev
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Admin panel
 
-## Security Vulnerabilities
+Create an admin user and open `/admin`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan make:filament-user
+```
+
+Access to the panel is restricted to authorized users (see the `canAccessPanel` implementation in the `User` model).
+
+## Project status
+
+This project is developed alongside the course recording.
+
+- [x] Module 1 — Foundations
+- [x] Module 2 — Dynamic blog
+- [x] Module 3 — Admin panel with Filament
+- [ ] Bonus lessons — extra topics added after the core course
+
+## Notes on language
+
+The course and the site content are in **Brazilian Portuguese**, since the target audience is Brazilian developers and clients. All code, comments and documentation are written in **English**.
+
+## About the author
+
+I'm Ronaldo Aires, a developer and civil engineer based in Mato Grosso, Brazil. I build modern Laravel, Filament, Livewire and Tailwind applications, including large and complex systems such as management platforms with quoting, catalogs and custom admin panels, and I enjoy turning what I learn in real projects into clear, practical teaching material.
+
+I'm open to international opportunities, collaborations and remote work. Feel free to reach out.
+
+- GitHub: [github.com/ronaldoaires](https://github.com/ronaldoaires)
+- LinkedIn: [linkedin.com/in/ronaldoaires](https://www.linkedin.com/in/ronaldoaires/)
+- Email: [ceo@unset.com.br](mailto:ceo@unset.com.br)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is released for educational purposes. _Choose a license (for example MIT) and add a `LICENSE` file if you want others to reuse the code._
