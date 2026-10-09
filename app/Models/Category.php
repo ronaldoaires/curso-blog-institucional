@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Helpers\SlugHelper;
 
 class Category extends Model
 {
@@ -68,5 +69,20 @@ class Category extends Model
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Boot the model and register its events.
+     */
+    protected static function booted(): void
+    {
+        static::saving(function (Category $category): void {
+            // Keep the current slug when editing and the name was not changed.
+            if ($category->exists && ! $category->isDirty('name') && filled($category->slug)) {
+                return;
+            }
+
+            $category->slug = SlugHelper::unique($category->name, static::class, $category);
+        });
     }
 }
